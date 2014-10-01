@@ -1,6 +1,13 @@
+//List of classes we  have imported. 
 import java.util.Scanner;
-
+/*
+The main method, here we created two objects of Player and will call methods upon it.
+The first input argument is Player X an the second arguement is Player O.
+Possible values for first and second argument is Human,Naive, Random, and Cutthroat.  
+*/
 public class TicTacToe{
+
+    //Diplay "Tic-Tac-Toe Game";
 
 	public static void main(String args[]){
 		Player playerOne = new Player();
@@ -11,10 +18,10 @@ public class TicTacToe{
 		}
 	}
 }
-
+//The interface class that define operations of a game board.
 class Board{
 	public String[][] ticBoard = new String [2][2];
-
+    //the availableSpace method, this method checks to see if a space is available. 
 	public boolean avaliableSpace(int spaceInQuestion){
 		if(getLetter(spaceInQuestion) != "null"){
 			return true;
@@ -24,7 +31,8 @@ class Board{
 			return false;
 		}
 	}
-
+    //the assignSpace method, this method hardcodes the values of the array we created
+    //to make sure they correspond to the correct values of 1-9. 
 	public void assignSpace(int unusedSpace, String playerLetter){
 		if(unusedSpace <= 9 && unusedSpace >= 1){
 			if(unusedSpace == 1){
@@ -64,11 +72,14 @@ class Board{
 			}
 		}	
 	}
-
+    //the victoryChecker method, in this method we calculated that there are 8 possible wins. 
+    //because of this, the method checks to see if the board has any of these possible wins and thus
+    //gives  a victor. 
 	public boolean victoryChecker(){
 
 	}
-
+    //the getLetter method, this method hardcodes the values of X and O and allows
+    //it to be displayed on the board. 
 	public String getLetter(int coordinateNumber){
 		if(coordinateNumber == 1){
 			return ticBoard[0][2];
@@ -107,7 +118,8 @@ class Board{
 		}
 	}
 }
-
+// TicTacToeBoard, a Class that implements the Board interface to hold a tic-tac-toe board. 
+//this board is represented by a 2-dimensional array. 
 class TicTacToeBoard{
 	public void displayBoard(){
 		System.out.println(getLetter(7)	+ "|" + getLetter(8) + "|" + getLetter(9));
@@ -117,7 +129,7 @@ class TicTacToeBoard{
 		System.out.println(getletter(1) + "|" + getletter(2) + "|" + getletter(3));
 	}
 }
-
+//This class represents the a player of the game. 
 class Player{
 	Scanner keyboard = new Scanner(System.in);
 	private String playerLetter;	
@@ -142,17 +154,17 @@ class Player{
 			
 			else if(!playerMode.equalsIgnoreCase("human")){
 				aiInput(playerMode);
-				legitInput = true;
+				,				legitInput = true;
 			}
 			
 			else{
 				System.out.println("Please input two valid player settings in the correct format.");
 				legitInput = false;
 			}
-		}while(legitInput != true);
+		}while(legitInpute != true);
 	}
 }
-
+//A subclass of Player that represents a human player defined in the previous method. 
 class HumanPlayer{
 	boolean correctImput = false;
 	public void humanInput(int someCoordinate){
@@ -168,6 +180,7 @@ class HumanPlayer{
 		}while(correctImput != true);
 	}	
 }
+//A subclass of Player that represents a computer player as defined in previous methods. 
 class ComputerPlayer{
 	public void aiInput(String aiSetting){
 		if(aiSetting.equalsIgnoreCase("naive")){
@@ -183,19 +196,31 @@ class ComputerPlayer{
 		}
 	}
 }
-
+/*
+A subclass of ComputerPlayer defined above.
+Will mark the first available spot on the board starting at the top left square and scanning
+each row from left to right. *
+*/
 class NaiveComputerPlayer{
 	public void firstAvaliableSpot(){
 		
 	}
 }
-
+/*
+A subclass of ComputerPlayer defined above.
+Will mark a random open spot on the board. 
+*/ 
 class RandomComputerPlayer{
 	public void randomSpot(){
 
 	}
 }
-
+/*
+A subclass of Computer Player defined above.
+Will implement an optimal strategy to play tic-tac-toe.
+Essentially player can play perfect tic-tac-toe if they choose the move with the highest priority. 
+Table: Win, Block,Fork, Block Opponent's Fork, Center, Opposite Corner,Empty Corner, Empty Side.  
+*/
 class CutThroatComputerPlayer{
 	public void cutThroatSpot(){
 	
